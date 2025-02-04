@@ -1,1 +1,96 @@
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Jabberer - Configuration</title>
+  <link rel="stylesheet" href="css/config.css">
+  <!-- Inline CSS for that retro look -->
+  <style>
+    body {
+      background-color: #000;
+      color: #0f0; /* Classic green text for that old-school terminal feel */
+      font-family: "Courier New", Courier, monospace;
+      padding: 20px;
+      margin: 0;
+    }
+    .container {
+      border: 2px solid #0f0;
+      padding: 20px;
+      margin: 40px auto;
+      max-width: 600px;
+      text-align: left;
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    label {
+      display: block;
+      margin-top: 10px;
+    }
+    input, select, button {
+      background-color: #000;
+      border: 1px solid #0f0;
+      color: #0f0;
+      font-family: inherit;
+      padding: 8px;
+      margin-top: 5px;
+      width: 100%;
+    }
+    button {
+      margin-top: 15px;
+      cursor: pointer;
+    }
+    .ascii-art {
+      font-family: "Courier New", Courier, monospace;
+      white-space: pre;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="ascii-art">
+ _______       __      __   __  ___  _______  _______  ______  
+|       \     |  \    /  \ |  \|   \|       \|       \|      \ 
+| $$$$$$$\    | $$\  /  $$ | $$ \$$  | $$$$$$$\ $$$$$$$\ \$$$$$$
+| $$  | $$    | $$$\  $$$$ | $$  |$$ | $$  | $$| $$  | $$  | $$ 
+| $$  | $$    | $$$$\ $$$$ | $$   \$$| $$  | $$| $$  | $$  | $$ 
+| $$  | $$    | $$\$$ $$ $$ | $$|\    | $$  | $$| $$  | $$  | $$ 
+| $$$$$$$\    | $$ \$$$| $$ | $$ \$$\| $$$$$$$\| $$$$$$$\ _| $$_
+|_______/     |__/  \$$|__/ |__/  \__|_______/|_______/|   __|
+                                                          |  $$  
+                                                          \$$   
+    </div>
+    <h1>Jabberer Configuration</h1>
+    <p>Welcome to Jabberer—the next best STT solution for mute streamers!</p>
+    <form id="configForm">
+      <label for="language">Select Language (STT):</label>
+      <select id="language" name="lang">
+        <option value="en-US" selected>English (US)</option>
+        <option value="en-GB">English (UK)</option>
+        <option value="es-ES">Spanish (ES)</option>
+        <option value="fr-FR">French (FR)</option>
+        <!-- Add more languages as needed -->
+      </select>
+      
+      <label for="translation">Translation Language (Optional):</label>
+      <select id="translation" name="translation">
+        <option value="" selected>None</option>
+        <option value="en-US">English (US)</option>
+        <option value="es-ES">Spanish (ES)</option>
+        <option value="fr-FR">French (FR)</option>
+        <!-- More languages can be added -->
+      </select>
+      
+      <label for="roomId">Room ID (optional):</label>
+      <input type="text" id="roomId" name="room" placeholder="Leave empty for random">
+      
+      <button type="submit">Start Captions</button>
+    </form>
+  </div>
+  <script src="js/config.js"></script>
+</body>
+</html>
