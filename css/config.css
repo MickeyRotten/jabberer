@@ -1,13 +1,12 @@
 body {
-    background-color: #fff;
-    color: #000;
+    background-color: #47B9FF;
+    color: #fff;
     font-family: "Source Code Pro", monospace; /* Change to "VT323" if you want */
     font-size: 18px;
     padding: 20px;
     margin: 0;
   }
   .container {
-    border: 2px solid #000;
     padding: 20px;
     margin: 40px auto;
     max-width: 700px;
