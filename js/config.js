@@ -42,7 +42,7 @@ document.addEventListener("DOMContentLoaded", function () {
       linkContainer.id = 'captionLinkContainer';
       configForm.insertAdjacentElement('afterend', linkContainer);
     }
-    linkContainer.innerHTML = `Captions room is open here: <a href="${url}" target="_blank">${url}</a>`;
+    linkContainer.innerHTML = `<br><span style="text-align: center;"><a href="${url}" target="_blank">Captions Room: ${url}</a></span>`;
 
     // Initialize WebSocket connection if not already connected.
     if (!ws) {
