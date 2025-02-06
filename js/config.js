@@ -36,7 +36,7 @@ document.addEventListener("DOMContentLoaded", function () {
       linkContainer.id = 'captionLinkContainer';
       configForm.insertAdjacentElement('afterend', linkContainer);
     }
-    linkContainer.innerHTML = `Captions room is open here: <a href="${url}" target="_blank">${url}</a>`;
+    linkContainer.innerHTML = `<a href="${url}" target="_blank">Captions room is open here</a>`;
 
     // Start the microphone-based speech recognition and send transcriptions
     startSpeechRecognition(language, room);
