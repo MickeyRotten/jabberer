@@ -46,7 +46,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Initialize WebSocket connection if not already connected.
     if (!ws) {
-      ws = new WebSocket("ws://35.228.43.65:8080");
+      ws = new WebSocket("https://8b49-85-76-43-64.ngrok-free.app");
       ws.onopen = function () {
         const joinMessage = { type: "join", room: room };
         ws.send(JSON.stringify(joinMessage));
