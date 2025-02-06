@@ -1,7 +1,7 @@
 // captions.js
 
 document.addEventListener('DOMContentLoaded', function () {
-  // Parse URL parameters for room and language.
+  // Parse URL parameters to get the room ID (and optionally language, if needed)
   const params = new URLSearchParams(window.location.search);
   const room = params.get('room');
   if (!room) {
@@ -9,39 +9,68 @@ document.addEventListener('DOMContentLoaded', function () {
     return;
   }
 
-  // Reference to the caption element.
+  // Get the caption display element
   const captionLine = document.getElementById('captionLine');
-  // Start with the default message.
+  if (!captionLine) {
+    console.error("No element found with id 'captionLine'.");
+    return;
+  }
+  // Initialize with a default message
   captionLine.textContent = "Waiting for transcription.";
 
-  // Variables for managing caption content and silence timer.
-  let currentWords = []; // array to store words
-  const maxWords = 30;   // adjust this number so that it roughly fits three rows
-  let silenceTimeout = null;
+  // State variables for caption buffering
+  let finalLines = []; // Array of finalized caption lines (max 3)
+  let activeLine = ""; // Current interim result
+  let silenceTimeout = null; // Timer to clear activeLine after silence
 
-  // Function to update the caption display.
+  // Update the caption display by combining finalized lines and the active line.
   function updateCaptionDisplay() {
-    // Join the words array into a string.
-    captionLine.textContent = currentWords.join(" ");
+    // Join the finalized lines with newline separators and add the active line (if any)
+    const displayText = finalLines.join("\n") + (activeLine ? "\n" + activeLine : "");
+    captionLine.textContent = displayText;
   }
 
-  // Function to clear the caption after 3 seconds of silence.
+  // Reset the silence timer. If no transcription comes in within 3 seconds, clear the active line.
   function resetSilenceTimer() {
     if (silenceTimeout) {
       clearTimeout(silenceTimeout);
     }
     silenceTimeout = setTimeout(() => {
-      currentWords = [];
+      activeLine = "";
       updateCaptionDisplay();
-    }, 3000); // 3000 ms = 3 seconds
+    }, 3000);
   }
 
-  // Connect to the WebSocket server using your ngrok (or wss) URL.
-  const ws = new WebSocket("https://ceb7-85-76-43-64.ngrok-free.app");  // update with your secure URL
+  // Handle a new transcription message
+  function handleTranscription(data) {
+    // Reset the silence timer on every incoming message.
+    resetSilenceTimer();
+
+    if (data.interim) {
+      // For interim results, update the active line.
+      activeLine = data.content.trim();
+    } else {
+      // For final results, update the active line and then finalize it.
+      activeLine = data.content.trim();
+      if (activeLine) {
+        finalLines.push(activeLine);
+        // Cap the number of final lines to 3.
+        if (finalLines.length > 3) {
+          finalLines.shift();
+        }
+      }
+      // Clear the active line after finalizing.
+      activeLine = "";
+    }
+    updateCaptionDisplay();
+  }
+
+  // Connect to the WebSocket server using your ngrok secure URL.
+  const ws = new WebSocket("wss://ceb7-85-76-43-64.ngrok-free.app");
 
   ws.onopen = function () {
     console.log("Connected to WebSocket server on captions page.");
-    // Join the specific room.
+    // Join the specified room.
     const joinMessage = { type: "join", room: room };
     ws.send(JSON.stringify(joinMessage));
   };
@@ -51,28 +80,7 @@ document.addEventListener('DOMContentLoaded', function () {
     try {
       const data = JSON.parse(event.data);
       if (data.type === "transcription") {
-        // Reset the silence timer each time we receive a message.
-        resetSilenceTimer();
-
-        // For interim results, update dynamically. For final results, we may finalize the text.
-        // Here, we simply take the content provided and split it into words.
-        let words = data.content.trim().split(/\s+/);
-        
-        // If the result is final, append a space to separate from the next interim chunk.
-        if (!data.interim) {
-          words.push(""); // this adds a space separator
-        }
-
-        // Append the new words to our currentWords buffer.
-        currentWords = currentWords.concat(words);
-        
-        // If the buffer exceeds maxWords, remove words from the beginning.
-        while (currentWords.length > maxWords) {
-          currentWords.shift();
-        }
-        
-        // Update the caption display.
-        updateCaptionDisplay();
+        handleTranscription(data);
       } else {
         console.warn("Unhandled message type:", data.type);
       }
