@@ -37,7 +37,7 @@ document.addEventListener("DOMContentLoaded", function () {
       // Insert the container right after the form
       configForm.insertAdjacentElement('afterend', linkContainer);
     }
-    linkContainer.innerHTML = `<br><span style="text-align: center;">Captions room is open here: <a href="${url}" target="_blank">${url}</a></span>`;
+    linkContainer.innerHTML = `<br><span style="text-align: center;"><a href="${url}" target="_blank">Link to Captions Room</a></span>`;
   });
 
   // Handle the Twitch bot invite button (placeholder functionality)
