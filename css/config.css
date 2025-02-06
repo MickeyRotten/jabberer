@@ -50,7 +50,6 @@ select {
   color: #000;
 }
 .ascii-art {
-  max-width: 650px;
   margin-bottom: 20px;
 }
 .help {
