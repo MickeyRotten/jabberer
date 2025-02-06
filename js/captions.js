@@ -4,6 +4,7 @@ document.addEventListener('DOMContentLoaded', function () {
   // Parse URL parameters
   const params = new URLSearchParams(window.location.search);
   const room = params.get('room');
+  console.log("Room in captions.js:", room);
   if (!room) {
     console.error("No room specified in URL parameters.");
     return;
@@ -27,13 +28,14 @@ document.addEventListener('DOMContentLoaded', function () {
   };
 
   ws.onmessage = function (event) {
+    console.log("Received message:", event.data);
     try {
       const data = JSON.parse(event.data);
       if (data.type === "transcription") {
         // Update the caption text with the new transcription.
-        // This simple version just replaces the text with the latest transcription.
-        // You can enhance it to merge multiple chunks if needed.
         captionLine.textContent = data.content;
+      } else {
+        console.warn("Unhandled message type:", data.type);
       }
     } catch (err) {
       console.error("Error parsing WebSocket message:", err);
