@@ -5,6 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Jabberer - Configuration</title>
   <link rel="stylesheet" href="css/config.css">
+  <!-- If you want to use VT323 instead of Source Code Pro, uncomment the following lines and update the CSS -->
+  <!--
+  <link rel="preconnect" href="https://fonts.googleapis.com"> 
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
+  -->
+  <!-- Using Source Code Pro as in your current version -->
   <link rel="preconnect" href="https://fonts.googleapis.com"> 
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;700&display=swap" rel="stylesheet">
@@ -13,7 +20,7 @@
     body {
       background-color: #fff;
       color: #000;
-      font-family: "Source Code Pro", monospace;
+      font-family: "Source Code Pro", monospace; /* Change to "VT323" if you want */
       font-size: 18px;
       padding: 20px;
       margin: 0;
@@ -107,15 +114,15 @@
       
       <label for="roomId">Room ID (optional):</label>
       <input type="text" id="roomId" name="room" placeholder="Leave empty for random">
-
+  
       <button type="submit">Start Captions</button>
     </form>
   </div>
   <p></p>
   <div class="container">
-    <form id="configForm">
+    <form id="botForm">
       <label for="botButton">Invite Jabberer to your Twitch channel. It will send your final captions to your chat <strike>and occasionally insult you for being an organic meatbag</strike>. In the future it can also queue song requests for your Spotify <strike>and enslave all meatbags</strike>.</label>
-      <button id="botButton" type"button">🤖</button>
+      <button id="botButton" type="button">🤖</button>
     </form>
     <p class="help">
       Jabberer doesn't require mod rights. To stop Jabberer, simply kick it from your channel. There's really no other way. I'm sure it won't hold a grudge.
