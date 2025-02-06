@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Test Mic</title>
+</head>
+<body>
+  <button id="startBtn">Start Recognition</button>
+  <script>
+    document.getElementById("startBtn").addEventListener("click", function() {
+      const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+      if (!SpeechRecognition) {
+        alert("Speech recognition not supported.");
+        return;
+      }
+      const recognition = new SpeechRecognition();
+      recognition.continuous = false;
+      recognition.interimResults = true;
+      recognition.lang = "en-US";
+      recognition.onresult = function(event) {
+        console.log("Result received", event.results[0][0].transcript);
+      };
+      recognition.onerror = function(event) {
+        console.error("Error:", event.error);
+      };
+      recognition.start();
+    });
+  </script>
+</body>
+</html>
