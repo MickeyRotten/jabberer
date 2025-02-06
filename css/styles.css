@@ -1,29 +1,54 @@
 /* styles.css for captions overlay */
 
+/* Ensure a transparent background for OBS overlays */
 body {
   margin: 0;
   padding: 0;
   background: transparent;
 }
 
-/* Caption box styling */
+/* Caption container styling */
 .caption-box {
   position: absolute;
   bottom: 0;
   width: 100%;
-  /* Limit to 3 rows; adjust line-height as needed */
+  /* Limit to three rows (adjust the multiplier if needed) */
   max-height: calc(3 * 1.2em);
   overflow: hidden;
-  background-color: rgba(0, 0, 0, 0.2); /* Black with 20% opacity */
+  background-color: rgba(0, 0, 0, 0.2); /* Black background with 20% opacity */
   font-family: 'Noto Sans', sans-serif;
-  font-weight: 700;
-  font-size: 36px;  /* Adjust for readability */
+  font-weight: bold;
+  font-size: clamp(28px, 5vw, 36px); /* Responsive font size */
   color: #fff;
   text-align: center;
   padding: 10px;
   box-sizing: border-box;
+  opacity: 1;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+/* Optional: a class to trigger a fade-out effect when needed */
+.fade-out {
+  opacity: 0;
+  transform: translateY(10px);
+}
+
+/* Each caption line */
+.caption-line {
+  margin: 0;
   line-height: 1.2em;
-  /* Allow hyphenation and word wrapping for very long words */
-  hyphens: auto;
-  word-wrap: break-word;
+  /* Apply a fade-in animation when new text appears */
+  animation: fadeIn 0.3s ease;
+}
+
+/* Keyframes for fadeIn animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
