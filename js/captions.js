@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', function () {
   const maxLines = 3;
 
   // Connect to the secure WebSocket endpoint (using ngrok or your WSS endpoint)
-  const ws = new WebSocket("wss://YOUR_NGROK_URL_OR_WSS_DOMAIN");
+  const ws = new WebSocket("https://ceb7-85-76-43-64.ngrok-free.app");
 
   ws.onopen = function () {
     console.log("Connected to WebSocket server on captions page.");
