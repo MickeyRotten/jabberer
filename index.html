@@ -22,7 +22,7 @@
 <img src="assets/images/JABBERER.gif">
     </div>
     <p>Just another STT captions and translation tool. And a bot.</p>
-    <p class="help">Select the language you speak, and the language you want to translate to (disabled by default). When you're done, click on Start Captions to open the captions overlay page, which you can then set as your OBS overlay source.</p>
+    <p class="help">Select the language you speak, and the language you want to translate to (disabled by default). When you're done, first click on Enable Microphone, and then Start Captions to open the captions overlay page, which you can then set as your OBS overlay source.</p>
     <form id="configForm">
       <label for="language">Select Language (STT):</label>
       <select id="language" name="lang">
@@ -44,7 +44,7 @@
       
       <label for="roomId">Room ID (optional):</label>
       <input type="text" id="roomId" name="room" placeholder="Leave empty for random">
-  
+      <button id="toggleMic" type="button">Enable Microphone</button>
       <button type="submit">Start Captions</button>
     </form>
     <p></p>
