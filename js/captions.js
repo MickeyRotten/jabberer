@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', function () {
   // Initially, captionLine should already say "Waiting for transcription."
   
   // Connect to the WebSocket server
-  const ws = new WebSocket("ws://35.228.43.65:8080");
+  const ws = new WebSocket("https://8b49-85-76-43-64.ngrok-free.app");
 
   ws.onopen = function () {
     console.log("Connected to WebSocket server on captions page.");
