@@ -1,1 +1,32 @@
+/* styles.css for captions overlay */
 
+/* Ensure a transparent background (useful for OBS overlays) */
+body {
+  margin: 0;
+  padding: 0;
+  background: transparent;
+}
+
+/* Caption container styling */
+.caption-box {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  /* Limit to three rows of text; adjust line-height as needed */
+  max-height: calc(3 * 1.2em);
+  overflow: hidden;
+  background-color: rgba(0, 0, 0, 0.2); /* Black background with 20% opacity */
+  font-family: 'Noto Sans', sans-serif;
+  font-weight: bold;
+  font-size: 36px; /* Adjust for readability */
+  color: #fff;
+  text-align: center;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+/* Each caption line */
+.caption-line {
+  margin: 0;
+  line-height: 1.2em;
+}
