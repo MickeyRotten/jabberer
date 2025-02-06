@@ -39,6 +39,7 @@ input {
 }
 button {
   background: #F300A1;
+  border-radius: 10px;
   color: #FFF;
   margin-top: 15px;
   cursor: pointer;
