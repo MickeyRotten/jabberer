@@ -50,11 +50,8 @@ body {
     color: #000;
   }
   .ascii-art {
-    font-family: "Courier New", Courier, monospace;
-    white-space: pre;
-    text-align: center;
+    max-width: 650px;
     margin-bottom: 20px;
-    font-size: 18px;
   }
   .help {
     font-size: 14px;
