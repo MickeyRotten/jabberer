@@ -26,8 +26,18 @@ document.addEventListener("DOMContentLoaded", function () {
       url += `&translation=${encodeURIComponent(translation)}`;
     }
 
-    // Redirect to the captions overlay page
-    window.location.href = url;
+    // Open the captions overlay in a new tab
+    window.open(url, '_blank');
+
+    // Display a link to the captions room below the "Start Captions" button
+    let linkContainer = document.getElementById('captionLinkContainer');
+    if (!linkContainer) {
+      linkContainer = document.createElement('div');
+      linkContainer.id = 'captionLinkContainer';
+      // Insert the container right after the form
+      configForm.insertAdjacentElement('afterend', linkContainer);
+    }
+    linkContainer.innerHTML = `Captions room is open here: <a href="${url}" target="_blank">${url}</a>`;
   });
 
   // Handle the Twitch bot invite button (placeholder functionality)
